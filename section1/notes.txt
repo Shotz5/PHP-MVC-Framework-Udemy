@@ -1,0 +1,59 @@
+================================================================================
+Introduction: MVC Concepts and Development Env Setup
+================================================================================
+
+--------------------------------------------------------------------------------
+The Problem with Writing Web Apps: How NOT to Structure Your Code
+--------------------------------------------------------------------------------
+
+= Writing a web application
+- Very quickly, PHP scrips can get complicated
+- index.php, posts.php, show_post.php include database.inc.php
+- URL = file location
+- Difficult to maintain code, scripts are unstructured 'require ../../../../../../'
+- Application logic mixed with presentation, programmer and designer can't work on same file
+- Insecure, db passes publically available
+
+= Solution: Use a Framework
+- Library of code, provides structure to build on
+- Code faster
+- More than one person 
+- Less complicated, easier to maintain
+- More secure, stuff stored outside of folder structure
+
+--------------------------------------------------------------------------------
+The Model-View-Controller Pattern
+--------------------------------------------------------------------------------
+
+- Separates the code that does stuff (application logic) from the code that shows stuff
+- Controllers are what the user interacts with 
+    - Receive a request from the user, decide what to do, send response back
+    - Only component that interacts with models to get data
+- Models are where app data is stored
+    - Responsible for storage and retrieval of data (usually a database)
+    - Knows nothing about the UI
+- Views are what the user sees on screen (HTML)
+    - Present the data to the user
+    - Know nothing about the models
+
+- Business logic separate from presentation: separation of concerns
+    - Easier to reuse code 
+        - Faster development
+    - Code is more organised
+        - Easier to understand and maintain
+        - Easier to test
+        - More secure
+- Designers can work on the front end without worrying about the business logic
+- Developers can focus on the business logic or back end without worrying about look/feel
+
+--------------------------------------------------------------------------------
+Create the Folders and Configure the Web Server
+--------------------------------------------------------------------------------
+
+= Public folder
+- Only folder accessable to web
+- The root of the web server
+- Front controller and any static files (CSS, images, etc.) go in here
+- Keeps stuff you don't want web accessable separate
+
+= 
