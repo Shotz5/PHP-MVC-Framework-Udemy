@@ -1,0 +1,60 @@
+================================================================================
+Routing: How URLs are processed in an MVC framerwork
+================================================================================
+
+--------------------------------------------------------------------------------
+Create a central entry point to the framework: the front controller
+--------------------------------------------------------------------------------
+
+- URLs mapping directly to scripts and files in unmaintable
+    - Every URL goes through same file
+    - URL maps to actions inside controllers
+
+= Using a front controller
+- URL does not map to each individual PHP script
+- All requests sent through one single page
+    - Provides cental entry point for all requests
+    - Handles commonalities (action to use, session handling, etc.)
+
+= The request is in the query string
+- Query string is the part of the url after the first question mark
+    - `daveh.io/index.php?/home`
+- We can descide where to route the request (ie which controller)
+    - `daveh.io/index.php?/show_post/123`
+    - `daveh.io/index.php?/posts?page=2`
+- The entire query string will be the request URL (route)
+
+--------------------------------------------------------------------------------
+Configure the web server to have pretty URLs
+--------------------------------------------------------------------------------
+
+The default page will be index.php (usually)
+- It can be removed from the URL
+    - `daveh.io/index.php` -> `daveh.io`
+    - `daveh.io/index.php?/posts` -> `daveh.io/?/posts`
+- We can also remove the ? to have "pretty URLs"
+    - Requires change of web server config
+    - `daveh.io/?/posts` -> `daveh.io/posts`
+    - `daveh.io/?/posts?page=1` -> `daveh.io/posts?page=1`
+
+- Using Apache:
+    - Add .htaccess which contain Rewrite rules
+
+--------------------------------------------------------------------------------
+Create and REQUIRE the Router Class
+--------------------------------------------------------------------------------
+
+- require or include 
+    - require throws an error if file not found
+    - include continues on without it
+
+--------------------------------------------------------------------------------
+Routing Table
+--------------------------------------------------------------------------------
+
+Router contains a table that matches routes to controllers and actions:
+    - Route - Controller - Action
+    - "/" - Home - index
+    - "/posts" - Posts - index
+    - "/show_post" - Posts - show
+    - "/admin/users" - "Admin\Users" - index

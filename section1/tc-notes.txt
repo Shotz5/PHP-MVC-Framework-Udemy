@@ -1,0 +1,90 @@
+================================================================================
+SECTION 1: Introduction: MVC concepts and development environment setup
+================================================================================
+
+= Section Overview
+
+= Problems with making a site without a framework.
+
+  - Difficult to maintain the code
+  - File structure will be monolithic
+  - File organisation will follow route structure and be brittle
+  - Services is are messy and error prone.
+
+= Solution?
+
+  - Use a framework.
+  - Faster to write with a framework.
+    - Code is less complicated and easier to understand
+  - Code is easier to maintain.
+    - It is easier to re-use code.
+    - It is easier to refactor code.
+    - It is easier to test the code.
+  - Code written with a framework is more organized:
+    - Easier to write secure code
+    - More than one person can work on the code.
+    - Development can divided by specialized skilles eg, front end and back end.
+
+= MVC Pattern: what it is and why it helps
+
+  - MVC separates data from presentation.
+  = Controllers are what the user interacts with.
+    - They receive a request from the user, decide what to do, and return a response.
+    - They are the only component that interacts with models.
+  = Models are where an application are stored.
+    - They are responsible for storing and retrieving data.
+    - They know nothing about the user interface.
+  = Views are what the user recieves in response to a request.
+    - They present the data to the user.
+    - They know nothing about models.
+
+= Setting up a web server
+
+  - Use PHP's built-in webserver: `php -S addr:port [-t docroot] [router]`
+  - NOTES:
+    - A router doesn't have to be in the document root
+    - File `include` and `require` are relative to the current working directory
+      that the server is running from, *not* the document root.
+  - EXAMPLES:
+    - Quick and dirty:
+      > php -S 127.0.0.1:8000
+      > http://127.0.0.1:8000/version-1/public/
+    - Custom web root (path can be relative)
+      > php -c php.ini -S 127.0.0.1:8000 -t version-1/public
+      > http://127.0.0.1:8000/
+    - Run on port 80 - requires root
+      > sudo php -c php.ini -S 127.0.0.1:80 -t version-1/public
+      > http://localhost/
+      - Eg: `version-1/public/a/b/c.php` maps to `http://localhost/a/b/c.php`
+    - Name a front controller file
+      > sudo php -c php.ini -S 127.0.0.1:80 -t version-1/public version-1/app/router.php
+      > http://localhost/
+      - All routes go to `version-1/app/router.php`
+        - The router does not have to be in the webroot!
+        - If this file has a root level `return false;`, the requested asset
+          will be processed directly, relative to the webroot folder.
+        - Eg: {php}
+          // serve on script assets as-is
+          if (!preg_match('/\.(html|php)$/', $_SERVER["SCRIPT_NAME"])) {
+              return false;
+          }
+          // do remaining MVC routing here ...
+          {/php}
+
+= Set up the framework folders
+  > App/
+  >     Controllers/
+  >     Models/
+  >     Views/
+  > Core/
+    - This is where our framework will go
+  > logs/
+  > public/
+    - This is where all web accessible code will go.
+      - Eg, front controller and static files go here.
+    - This folder maps to the root URL, and is the only folder accessible
+      from the web.
+  > public/index.php
+    - This is our front controller.
+  > vendor/
+    - This is where all composer dependencies

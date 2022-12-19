@@ -1,0 +1,18 @@
+================================================================================
+Controllers and Actions
+================================================================================
+
+--------------------------------------------------------------------------------
+Controllers and Actions: An Introduction
+--------------------------------------------------------------------------------
+
+- Controllers are what the user interacts with
+- They receive a request from the user, decide what to do, then send a response back
+
+- The router has matched a url to a route to get a controller and action
+- Controllers are PHP Classes
+- They contain methods that are the actions
+
+--------------------------------------------------------------------------------
+How to Create Objects and Run Methods Dynamically
+--------------------------------------------------------------------------------
