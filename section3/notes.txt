@@ -56,7 +56,7 @@ Using Special Characters in Regex
     /ab.de/ => "abcde" => Match
     /ab.de/ => "ab de" => Match
     /ab.de/ => "abde" => Not Match
-    - .* - "Any number of any characters, including 0"
+- .* - "Any number of any characters, including 0"
     /abc.*/ => "abcdef" => Match
     /abd.*/ => "abc" => Match
 - \ - Match metacharacters by escaping them
