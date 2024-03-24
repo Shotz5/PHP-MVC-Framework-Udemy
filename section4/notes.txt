@@ -1,0 +1,8 @@
+================================================================================
+Pretty URLs
+================================================================================
+
+- Would be nice to specify name of a blog post, title, etc
+- Url still points to path of file in filesystem, error when trying pretty url
+- Need to separate url from filesystem
+    - URL rewriting, web server itself (Apache) not PHP
