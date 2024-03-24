@@ -7,3 +7,11 @@ Add another page: How NOT to do it in an MVC framework
 --------------------------------------------------------------------------------
 
 - 
+
+--------------------------------------------------------------------------------
+The Front Controller: Handle all requests with one script
+--------------------------------------------------------------------------------
+
+- In a traditional php site, web address corresponds to file on filesystem, url indicated which script
+- In MVC, all requests go through one file, file in entrypoint for all requests
+- The front controller uses the url to decide what to do
