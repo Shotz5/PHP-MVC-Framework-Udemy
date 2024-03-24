@@ -1,60 +1,27 @@
 ================================================================================
-Routing: How URLs are processed in an MVC framerwork
+MVC Basics: Models, Views, and Controllers
 ================================================================================
 
 --------------------------------------------------------------------------------
-Create a central entry point to the framework: the front controller
+The MVC Pattern: How it can help you to write better web applications
 --------------------------------------------------------------------------------
 
-- URLs mapping directly to scripts and files in unmaintable
-    - Every URL goes through same file
-    - URL maps to actions inside controllers
-
-= Using a front controller
-- URL does not map to each individual PHP script
-- All requests sent through one single page
-    - Provides cental entry point for all requests
-    - Handles commonalities (action to use, session handling, etc.)
-
-= The request is in the query string
-- Query string is the part of the url after the first question mark
-    - `daveh.io/index.php?/home`
-- We can descide where to route the request (ie which controller)
-    - `daveh.io/index.php?/show_post/123`
-    - `daveh.io/index.php?/posts?page=2`
-- The entire query string will be the request URL (route)
+- Application code can get tangled up with html code
+- Page to show a list, page to show, page to show categories
+- All of these would repeat the database code
+    - Can make a database.inc.php file to share the database code
+- Admin folder to manage users, etc, gets busy with presentation code mixed in with application logic
+    - Difficult to maintain, bugs, security issues, etc.
+- Solution: MVC patter to organise code
+    - Models, Views, Controllers
+    - Contollers are what the user interacts with
+        - Request, Response
+    - Models wrap around data typically stored in the database
+    - Views are what the user sees (presentation of data)
+- Easy reuse, improved security and maintainability
 
 --------------------------------------------------------------------------------
-Configure the web server to have pretty URLs
+Adapt Plain PHP Code to Fit the MVC Pattern: Create a Model Class
 --------------------------------------------------------------------------------
 
-The default page will be index.php (usually)
-- It can be removed from the URL
-    - `daveh.io/index.php` -> `daveh.io`
-    - `daveh.io/index.php?/posts` -> `daveh.io/?/posts`
-- We can also remove the ? to have "pretty URLs"
-    - Requires change of web server config
-    - `daveh.io/?/posts` -> `daveh.io/posts`
-    - `daveh.io/?/posts?page=1` -> `daveh.io/posts?page=1`
-
-- Using Apache:
-    - Add .htaccess which contain Rewrite rules
-
---------------------------------------------------------------------------------
-Create and REQUIRE the Router Class
---------------------------------------------------------------------------------
-
-- require or include 
-    - require throws an error if file not found
-    - include continues on without it
-
---------------------------------------------------------------------------------
-Routing Table
---------------------------------------------------------------------------------
-
-Router contains a table that matches routes to controllers and actions:
-    - Route - Controller - Action
-    - "/" - Home - index
-    - "/posts" - Posts - index
-    - "/show_post" - Posts - show
-    - "/admin/users" - "Admin\Users" - index
+- 
