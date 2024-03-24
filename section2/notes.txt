@@ -24,4 +24,6 @@ The MVC Pattern: How it can help you to write better web applications
 Adapt Plain PHP Code to Fit the MVC Pattern: Create a Model Class
 --------------------------------------------------------------------------------
 
-- 
+- PHP-FIG .org for PSR recommendations
+- Move code into view and model files
+- index.php only contains php, no html, remove close tag
