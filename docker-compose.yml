@@ -1,0 +1,15 @@
+services:
+  php:
+    image: php:8.3-apache
+    volumes:
+      - ./www:/var/www/html
+    ports:
+      - "8000:80"
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+  adminer:
+    image: adminer:latest
+    ports:
+      - "8080:8080"
