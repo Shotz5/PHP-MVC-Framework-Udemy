@@ -1,0 +1,3 @@
+RewriteEngine On
+# Whatever the url is, request index.php instead
+RewriteRule ^ index.php

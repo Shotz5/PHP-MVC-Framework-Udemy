@@ -1,5 +1,7 @@
 <?php 
 
+exit("Henlo");
+
 $action = $_GET["action"];
 $controller = $_GET["controller"];
 
