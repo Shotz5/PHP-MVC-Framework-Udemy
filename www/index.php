@@ -9,11 +9,14 @@ spl_autoload_register(function (string $class_name) {
 $router = new Framework\Router;
 
 $router->add("/{controller}/{action}");
+$router->add("/{controller}/{id}/{action}");
 $router->add('/home/index', ["controller" => "home", "action" => "index"]);
 $router->add('/products', ["controller" => "products", "action" => "index"]);
 $router->add('/', ["controller" => "home", "action" => "index"]);
 
 $params = $router->match($path);
+
+print_r($params);
 
 if ($params === false) {
     exit("No route matched");

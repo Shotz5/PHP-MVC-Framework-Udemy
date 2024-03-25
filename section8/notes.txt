@@ -2,3 +2,38 @@
 Route Variables: Get Data from the URL Path
 ================================================================================
 
+--------------------------------------------------------------------------------
+Wildcards and Negated Character Classes in Regular Expressions
+--------------------------------------------------------------------------------
+
+- . - match any single character: letter, number, whitespace, etc.
+    /ab.de/ => "abcde" => Match
+    /ab.de/ => "ab de" => Match
+    /ab.de/ => "abde" => Not Match
+- [] - Match one of any of the characters in the brackets
+    /a[123]b/ => "a2b" => Match
+    /a[123]b/ => "a4b" => Not Match
+    /a[123]+b/ => "a321322b" => Match
+    /a[1-5]b/ => "a2b" => Match
+    /a[1-5]b/ => "a6b" => Not Match
+    /[a-z0-9 ]+/ => "hello there" => Match
+- [^ ] - Negate the character class: match any character except for the ones specified
+    /a[^123]b/ => "a2b" => Not Match
+    /a[^123]b/ => "a4b" => Match
+    /[^a-z]+/ => "hello" => Not match
+    /[^a-z]+/ => "HELLO" => Not match
+
+
+
+
+
+- .* - "Any number of any characters, including 0"
+    /abc.*/ => "abcdef" => Match
+    /abd.*/ => "abc" => Match
+- \ - Match metacharacters by escaping them
+    /abc./ => "abcd" => Match
+    /abc\./ => "abcd" => Not match
+- Patterns are case sensitive, adding the "i" modifier after the regex makes it insensitive
+    /abc/ => "abc" => Match
+    /abd/ => "Abc" => Not match
+    /abc/i => "Abc" => Match
