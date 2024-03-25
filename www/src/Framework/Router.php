@@ -16,13 +16,11 @@ class Router
 
     public function match(string $path): array|bool
     {
+        $path = trim($path, "/");
+
         foreach ($this->routes as $route) {
 
-            $pattern = "/^\/(?<controller>[a-z]+)\/(?<action>[a-z]+)$/";
-
-            echo $pattern, "\n", $route["path"], "\n";
-
-            $this->getPatternFromRoutePath($route["path"]);
+            $pattern = $this->getPatternFromRoutePath($route["path"]);
 
             if (preg_match($pattern, $path, $matches)) {
 
@@ -35,20 +33,21 @@ class Router
         return false;
     }
 
-    private function getPatternFromRoutePath(string $route_path)
+    private function getPatternFromRoutePath(string $route_path): string
     {
         $route_path = trim($route_path, "/");
 
         $segments = explode("/", $route_path);
 
         $segments = array_map(function (string $segment): string {
-            preg_match("#^\{([a-z][a-z0-9]*)\}$#", $segment, $matches);
+            preg_match("/^\{([a-z][a-z0-9]*)\}$/", $segment, $matches);
 
             $segment = "(?<" . $matches[1] . ">[a-z]+)";
+            $segment .= "\\";
 
             return $segment;
         }, $segments);
 
-        print_r($segments);
+        return "/^" . rtrim(implode("/", $segments), "\\") . "$/";
     }
 }
