@@ -18,10 +18,8 @@ class Dispatcher
             exit("No route matched");
         }
 
-        $action = $params["action"];
+        $action = $this->getActionName($params);
         $controller = $this->getControllerName($params);
-
-        exit($controller);
 
         $controller_object = new $controller;
 
@@ -54,5 +52,14 @@ class Dispatcher
         $namespace = "App\Controllers";
 
         return $namespace . "\\" . $controller;
+    }
+
+    private function getActionName(array $params): string
+    {
+        $action = $params["action"];
+
+        $action = lcfirst(str_replace("-", "", ucwords(strtolower($action), "-")));
+
+        return $action;
     }
 }
