@@ -16,9 +16,10 @@ class Router
 
     public function match(string $path): array|bool
     {
-        $pattern = "/^\/home\/index$/";
+        $pattern = "/^\/([a-z]+)\/([a-z]+)$/";
 
-        if (preg_match($pattern, $path)) {
+        if (preg_match($pattern, $path, $matches)) {
+            print_r($matches);
             exit("Match");
         }
 

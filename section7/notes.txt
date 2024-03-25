@@ -32,6 +32,29 @@ Using Special Characters in Regex: Matching the Start and End
     /abc$/ => "123abc" => Match
     /^abc$/ => "abc" => Match
     /^abc$/ => "abcdef" =< Not match
+
+--------------------------------------------------------------------------------
+Matching Patterns: Character sets in regular expressions
+--------------------------------------------------------------------------------
+
+- [] - Match one of any of the characters in the brackets
+    /a[123]b/ => "a2b" => Match
+    /a[123]b/ => "a4b" => Not Match
+    /a[123]+b/ => "a321322b" => Match
+    /a[1-5]b/ => "a2b" => Match
+    /a[1-5]b/ => "a6b" => Not Match
+    /[a-z0-9 ]+/ => "hello there" => Match
+- [^ ] - Negate the character class: match any character except for the ones specified
+    /a[^123]b/ => "a2b" => Not Match
+    /a[^123]b/ => "a4b" => Match
+    /[^a-z]+/ => "hello" => Not match
+    /[^a-z]+/ => "HELLO" => Not match
+- [a-z0-9 ] - Ranges, any single letters a-z or 0-9 or space
+
+--------------------------------------------------------------------------------
+Repetition in Regular Expressions
+--------------------------------------------------------------------------------
+
 - * - Look for character repeated 0 or more times
 - + - Look for character repeated 1 or more times
     /a*bc/ => "abc" => Match
@@ -39,6 +62,10 @@ Using Special Characters in Regex: Matching the Start and End
     /a*bc/ => "bc" => Match
     /a+bc/ => "bc" => Not Match
     /a+bc/ => "aaaaaaabc" => Match
+
+
+
+# None of this was shown in the new version
 - . - match any single character: letter, number, whitespace, etc.
     /ab.de/ => "abcde" => Match
     /ab.de/ => "ab de" => Match
@@ -53,9 +80,6 @@ Using Special Characters in Regex: Matching the Start and End
     /abc/ => "abc" => Match
     /abd/ => "Abc" => Not match
     /abc/i => "Abc" => Match
-
-
-
 
 Matacharacters
     - Used to match a specific type of character
