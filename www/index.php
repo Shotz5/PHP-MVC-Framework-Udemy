@@ -12,13 +12,8 @@ $router->add('/', ["controller" => "home", "action" => "index"]);
 
 $params = $router->match($path);
 
-var_dump($params);
-exit;
-
-$segment = explode("/", $path);
-
-$action = $segment[2];
-$controller = $segment[1];
+$action = $params["action"];
+$controller = $params["controller"];
 
 require "src/controllers/$controller.php";
 $controller_object = new $controller;
