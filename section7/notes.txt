@@ -21,6 +21,40 @@ Regular expression:
     /abc/ => "bcdea" => No Match
     /2:3/ => "12:34:56" => Match
 
+--------------------------------------------------------------------------------
+Using Special Characters in Regex: Matching the Start and End
+--------------------------------------------------------------------------------
+
+- ^ - Start of string
+- $ - End of string
+    /^abc/ => "abc" => Match
+    /^abc/ => "123abc" => Not Match
+    /abc$/ => "123abc" => Match
+    /^abc$/ => "abc" => Match
+    /^abc$/ => "abcdef" =< Not match
+- * - Look for character repeated 0 or more times
+- + - Look for character repeated 1 or more times
+    /a*bc/ => "abc" => Match
+    /a+bc/ => "abc" => Match
+    /a*bc/ => "bc" => Match
+    /a+bc/ => "bc" => Not Match
+    /a+bc/ => "aaaaaaabc" => Match
+- . - match any single character: letter, number, whitespace, etc.
+    /ab.de/ => "abcde" => Match
+    /ab.de/ => "ab de" => Match
+    /ab.de/ => "abde" => Not Match
+- .* - "Any number of any characters, including 0"
+    /abc.*/ => "abcdef" => Match
+    /abd.*/ => "abc" => Match
+- \ - Match metacharacters by escaping them
+    /abc./ => "abcd" => Match
+    /abc\./ => "abcd" => Not match
+- Patterns are case sensitive, adding the "i" modifier after the regex makes it insensitive
+    /abc/ => "abc" => Match
+    /abd/ => "Abc" => Not match
+    /abc/i => "Abc" => Match
+
+
 
 
 Matacharacters
