@@ -16,6 +16,8 @@ class Router
 
     public function match(string $path): array|bool
     {
+        $path = urldecode($path);
+
         $path = trim($path, "/");
 
         foreach ($this->routes as $route) {
@@ -54,6 +56,6 @@ class Router
             return $segment;
         }, $segments);
 
-        return "#^" . implode("/", $segments) . "$#i";
+        return "#^" . implode("/", $segments) . "$#iu";
     }
 }
