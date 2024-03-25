@@ -19,15 +19,17 @@ class Router
         $pattern = "/^\/(?<controller>[a-z]+)\/(?<action>[a-z]+)$/";
 
         if (preg_match($pattern, $path, $matches)) {
-            print_r($matches);
-            exit("Match");
+
+            $matches = array_filter($matches, "is_string", ARRAY_FILTER_USE_KEY);
+
+            return $matches;
         }
 
-        foreach ($this->routes as $route) {
-            if ($route["path"] === $path) {
-                return $route["params"];
-            }
-        }
+        // foreach ($this->routes as $route) {
+        //     if ($route["path"] === $path) {
+        //         return $route["params"];
+        //     }
+        // }
 
         return false;
     }
