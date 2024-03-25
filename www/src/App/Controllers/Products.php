@@ -20,4 +20,9 @@ class Products
         var_dump($id);
         require "views/products_show.php";
     }
+
+    public function showPage(string $title, string $id, string $page)
+    {
+        
+    }
 }
