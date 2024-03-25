@@ -5,6 +5,7 @@ services:
     build: .
     volumes:
       - ./www:/var/www/html
+      - ./apache:/etc/apache2/sites-available
     ports:
       - "8000:80"
   mysql:
