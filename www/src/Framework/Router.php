@@ -16,7 +16,7 @@ class Router
 
     public function match(string $path): array|bool
     {
-        $pattern = "/^\/([a-z]+)\/([a-z]+)$/";
+        $pattern = "/^\/(?<controller>[a-z]+)\/(?<action>[a-z]+)$/";
 
         if (preg_match($pattern, $path, $matches)) {
             print_r($matches);
