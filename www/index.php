@@ -1,6 +1,8 @@
 <?php 
 
-exit("Henlo");
+$path = $_SERVER["REQUEST_URI"];
+echo $path;
+exit;
 
 $action = $_GET["action"];
 $controller = $_GET["controller"];
