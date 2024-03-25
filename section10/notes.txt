@@ -1,0 +1,5 @@
+================================================================================
+Views: Present the data
+================================================================================
+
+- Contains just presentation code like HTML, and minimal php code to present any data
