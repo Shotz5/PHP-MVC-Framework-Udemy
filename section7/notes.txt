@@ -62,19 +62,3 @@ Repetition in Regular Expressions
     /a*bc/ => "bc" => Match
     /a+bc/ => "bc" => Not Match
     /a+bc/ => "aaaaaaabc" => Match
-
-
-
-
-Matacharacters
-    - Used to match a specific type of character
-    - Common includes
-        \d (digit from 0-9)
-        \w (any character from a to z, A to Z, 0 to 9)
-        \s (any whitespace character)
-
-More regular expressions:
-    /ab\d/ => "ab23" => Match
-    /abc\d/ => "ab23" => No match
-    /\d\d/ => "ab23" => Match
-    /\w\s\d/ => "ab 34" => Match

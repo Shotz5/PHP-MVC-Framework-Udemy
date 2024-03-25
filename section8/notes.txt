@@ -23,10 +23,19 @@ Wildcards and Negated Character Classes in Regular Expressions
     /[^a-z]+/ => "hello" => Not match
     /[^a-z]+/ => "HELLO" => Not match
 
+--------------------------------------------------------------------------------
+Route Variable Patterns and Shorthand Character Classes in Regular Expressions
+--------------------------------------------------------------------------------
+
+= Shorthand Character classes
+- Used to match a specific type of character
+- Common includes
+    \d (digit from 0-9)
+    \w (any character from a to z, A to Z, 0 to 9)
+    \s (any whitespace character)
 
 
-
-
+# Still not used yet
 - .* - "Any number of any characters, including 0"
     /abc.*/ => "abcdef" => Match
     /abd.*/ => "abc" => Match
@@ -37,3 +46,10 @@ Wildcards and Negated Character Classes in Regular Expressions
     /abc/ => "abc" => Match
     /abd/ => "Abc" => Not match
     /abc/i => "Abc" => Match
+
+More regular expressions:
+    /ab\d/ => "ab23" => Match
+    /abc\d/ => "ab23" => No match
+    /\d\d/ => "ab23" => Match
+    /\w\s\d/ => "ab 34" => Match
+
