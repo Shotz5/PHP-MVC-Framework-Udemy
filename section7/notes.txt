@@ -1,0 +1,37 @@
+================================================================================
+Introduction to Advanced Routing: More flexible routes using patterns
+================================================================================
+
+--------------------------------------------------------------------------------
+How to do Complex String Compaisons: An Introduction to Regular Expressions
+--------------------------------------------------------------------------------
+
+A regex defines a pattern of characters
+    - Can match part of a string
+    - Can be used for advances matching and replacing
+        - Match or replace just numbers
+        - See if a string contains a valid email address
+
+Instead of comparing to fixed string, we compare to pattern
+    - if ($name == "Dave") => if (preg_match("/Dave/", $name))
+
+Regular expression:
+    /abc/ => "abc" => Match
+    /abc/ => "abcde" => Match
+    /abc/ => "bcdea" => No Match
+    /2:3/ => "12:34:56" => Match
+
+
+
+Matacharacters
+    - Used to match a specific type of character
+    - Common includes
+        \d (digit from 0-9)
+        \w (any character from a to z, A to Z, 0 to 9)
+        \s (any whitespace character)
+
+More regular expressions:
+    /ab\d/ => "ab23" => Match
+    /abc\d/ => "ab23" => No match
+    /\d\d/ => "ab23" => Match
+    /\w\s\d/ => "ab 34" => Match
