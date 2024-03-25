@@ -1,0 +1,10 @@
+================================================================================
+Dependency Injection and Autowiring
+================================================================================
+
+- Viewer class is written with "new Viewer"
+    - It is a dependency
+- Problem is products class is tightly coupled to viewer class
+- Difficult to change
+- Difficult to write automated tests
+- Pass in or "inject" dependencies instead
