@@ -6,6 +6,10 @@ require "src/router.php";
 
 $router = new Router;
 
+$router->add('/home/index', ["controller" => "home", "action" => "index"]);
+$router->add('/products', ["controller" => "products", "action" => "index"]);
+$router->add('/', ["controller" => "home", "action" => "index"]);
+
 $segment = explode("/", $path);
 
 $action = $segment[2];
