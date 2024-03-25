@@ -1,0 +1,7 @@
+================================================================================
+An Introduction to Routing
+================================================================================
+
+- Need to have a list of paths to correspond to matching controller/action
+- Routing table
+    - Matches list of paths and routes to controller and action
