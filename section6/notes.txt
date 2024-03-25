@@ -6,3 +6,11 @@ Class Organisation: Autoloading and Namespaces
     - $router = new Router -> Defined ? Create Object : Class not found error
 - autoloader override
     - $router = new Router -> Defined ? create Object : (Run autoloader ? create object : class not found error)
+
+= Namespaces
+    - Can't have two files with the same name in the same folder
+    - Can't have two classes with the same name
+        - Can if using namespaces
+        - Folder or directory
+        - put namespace before class, classes with same name in different namespace
+        - Can be nested
