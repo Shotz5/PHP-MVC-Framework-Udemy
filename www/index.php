@@ -19,7 +19,7 @@ if ($params === false) {
 }
 
 $action = $params["action"];
-$controller = $params["controller"];
+$controller = "App\Controllers\\" . ucwords($params["controller"]);
 
 $controller_object = new $controller;
 
