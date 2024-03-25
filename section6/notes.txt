@@ -1,0 +1,8 @@
+================================================================================
+Class Organisation: Autoloading and Namespaces
+================================================================================
+
+- normal operation
+    - $router = new Router -> Defined ? Create Object : Class not found error
+- autoloader override
+    - $router = new Router -> Defined ? create Object : (Run autoloader ? create object : class not found error)
