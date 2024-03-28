@@ -1,17 +1,16 @@
 <?php
 declare(strict_types=1);
 
-$show_errors = false;
-ini_set("display_errors", (int)$show_errors);
-ini_set("log_errors", 1);
-ini_set("error_log", "/var/www/html/logs/error_log");
-
 spl_autoload_register(function (string $class_name) {
     require "src/" . str_replace("\\", "/", $class_name) . ".php";
 });
 
 $dotenv = new Framework\Dotenv;
 $dotenv->load('.env');
+
+ini_set("display_errors", $_ENV["SHOW_ERRORS"]);
+ini_set("log_errors", 1);
+ini_set("error_log", "/var/www/html/logs/error_log");
 
 set_error_handler("Framework\ErrorHandler::handleError");
 set_exception_handler("Framework\ErrorHandler::handleException");

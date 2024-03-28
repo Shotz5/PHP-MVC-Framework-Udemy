@@ -30,7 +30,7 @@ class ErrorHandler
             $template = "500.php";
         }
     
-        if (ini_get("display_errors") === false) {
+        if ($_ENV["SHOW_ERRORS"] === false) {
             require "views/$template";
         } else {
             throw $exception;
