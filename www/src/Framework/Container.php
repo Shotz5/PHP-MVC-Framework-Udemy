@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Framework;
 
@@ -49,7 +50,7 @@ class Container
                     $class_name class");
             }
 
-            $dependencies[] = $this->get($type);
+            $dependencies[] = $this->get((string) $type);
         }
 
         return new $class_name(...$dependencies);
