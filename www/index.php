@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
+$show_errors = true;
+ini_set("display_errors", (int)$show_errors);   
+
 if ($path === false) {
     throw new UnexpectedValueException("Malformed url: {$_SERVER["REQUEST_URI"]}");
 }
