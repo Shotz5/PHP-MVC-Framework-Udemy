@@ -1,18 +1,22 @@
 <?php
 declare(strict_types=1);
 
+$show_errors = true;
+ini_set("display_errors", (int)$show_errors);
+ini_set("log_errors", 1);
+ini_set("error_log", "/var/www/html/logs/error_log");
+
+set_exception_handler(function (Throwable $exception) use ($show_errors) {
+    if ($show_errors === false) {
+        require "views/500.php";
+    }
+
+    throw new $exception;
+});
+
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
-$show_errors = false;
-ini_set("display_errors", (int)$show_errors);
 
-if ($show_errors === false) {
-    ini_set("log_errors", 1);
-    ini_set("error_log", "/var/www/html/logs/error_log");
-    echo ini_get("error_log");
-
-    require "views/500.php";
-}
 
 if ($path === false) {
     throw new UnexpectedValueException("Malformed url: {$_SERVER["REQUEST_URI"]}");
