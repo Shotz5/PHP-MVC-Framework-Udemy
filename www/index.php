@@ -6,17 +6,25 @@ ini_set("display_errors", (int)$show_errors);
 ini_set("log_errors", 1);
 ini_set("error_log", "/var/www/html/logs/error_log");
 
+set_error_handler(function (
+    int $errorno,
+    string $errorstr,
+    string $errfile,
+    int $errline
+): bool
+{
+    throw new ErrorException($errorstr, 0, $errorno, $errfile, $errline);
+});
+
 set_exception_handler(function (Throwable $exception) use ($show_errors) {
     if ($show_errors === false) {
         require "views/500.php";
+    } else {
+        throw $exception;
     }
-
-    throw new $exception;
 });
 
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-
-
 
 if ($path === false) {
     throw new UnexpectedValueException("Malformed url: {$_SERVER["REQUEST_URI"]}");
