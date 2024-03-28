@@ -1,48 +1,23 @@
 <?php
 declare(strict_types=1);
 
-$show_errors = false;
+$show_errors = true;
 ini_set("display_errors", (int)$show_errors);
 ini_set("log_errors", 1);
 ini_set("error_log", "/var/www/html/logs/error_log");
 
-set_error_handler(function (
-    int $errorno,
-    string $errorstr,
-    string $errfile,
-    int $errline
-): bool
-{
-    throw new ErrorException($errorstr, 0, $errorno, $errfile, $errline);
+spl_autoload_register(function (string $class_name) {
+    require "src/" . str_replace("\\", "/", $class_name) . ".php";
 });
 
-set_exception_handler(function (Throwable $exception) use ($show_errors) {
-    if ($exception instanceof Framework\Exceptions\PageNotFoundException) {
-        http_response_code(404);
-
-        $template = "404.php";
-    } else {
-        http_response_code(500);
-
-        $template = "500.php";
-    }
-
-    if ($show_errors === false) {
-        require "views/$template";
-    } else {
-        throw $exception;
-    }
-});
+set_error_handler("Framework\ErrorHandler::handleError");
+set_exception_handler("Framework\ErrorHandler::handleException");
 
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
 if ($path === false) {
     throw new UnexpectedValueException("Malformed url: {$_SERVER["REQUEST_URI"]}");
 }
-
-spl_autoload_register(function (string $class_name) {
-    require "src/" . str_replace("\\", "/", $class_name) . ".php";
-});
 
 $router = new Framework\Router;
 
