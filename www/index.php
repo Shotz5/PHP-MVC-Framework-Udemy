@@ -3,8 +3,12 @@ declare(strict_types=1);
 
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
-$show_errors = true;
-ini_set("display_errors", (int)$show_errors);   
+$show_errors = false;
+ini_set("display_errors", (int)$show_errors);
+
+if ($show_errors === false) {
+    require "views/500.php";
+}
 
 if ($path === false) {
     throw new UnexpectedValueException("Malformed url: {$_SERVER["REQUEST_URI"]}");
