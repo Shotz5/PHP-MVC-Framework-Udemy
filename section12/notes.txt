@@ -5,3 +5,4 @@ Managing Dependencies with a Service Container
 - Can't instantiate default types (string, int, etc.)
 - Can't be resolved using reflection
 - This is what service containers are for
+- $container->set(App\Database::class, $database) // This is known as BINDING
