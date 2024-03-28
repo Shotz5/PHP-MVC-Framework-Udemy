@@ -2,3 +2,4 @@
 Error Handling: Exceptions, Environments, and HTTP Status Codes
 ================================================================================
 
+- Don't use Exception class to throw exceptions, try and use the SPL Exceptions to give more detail
