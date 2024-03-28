@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Framework;
 
+use Framework\Exceptions\PageNotFoundException;
 use ReflectionMethod;
 
 class Dispatcher
@@ -18,7 +19,7 @@ class Dispatcher
         $params = $this->router->match($path);
 
         if ($params === false) {
-            exit("No route matched");
+            throw new PageNotFoundException("No route matched");
         }
 
         $action = $this->getActionName($params);

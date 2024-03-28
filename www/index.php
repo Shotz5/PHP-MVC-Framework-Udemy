@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
+if ($path === false) {
+    throw new UnexpectedValueException("Malformed url: {$_SERVER["REQUEST_URI"]}");
+}
+
 spl_autoload_register(function (string $class_name) {
     require "src/" . str_replace("\\", "/", $class_name) . ".php";
 });
