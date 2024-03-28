@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-$show_errors = true;
+$show_errors = false;
 ini_set("display_errors", (int)$show_errors);
 ini_set("log_errors", 1);
 ini_set("error_log", "/var/www/html/logs/error_log");
@@ -17,15 +17,18 @@ set_error_handler(function (
 });
 
 set_exception_handler(function (Throwable $exception) use ($show_errors) {
-
     if ($exception instanceof Framework\Exceptions\PageNotFoundException) {
         http_response_code(404);
+
+        $template = "404.php";
     } else {
         http_response_code(500);
+
+        $template = "500.php";
     }
 
     if ($show_errors === false) {
-        require "views/500.php";
+        require "views/$template";
     } else {
         throw $exception;
     }
