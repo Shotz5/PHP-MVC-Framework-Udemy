@@ -7,6 +7,10 @@ $show_errors = false;
 ini_set("display_errors", (int)$show_errors);
 
 if ($show_errors === false) {
+    ini_set("log_errors", 1);
+    ini_set("error_log", "/var/www/html/logs/error_log");
+    echo ini_get("error_log");
+
     require "views/500.php";
 }
 
