@@ -17,6 +17,13 @@ set_error_handler(function (
 });
 
 set_exception_handler(function (Throwable $exception) use ($show_errors) {
+
+    if ($exception instanceof Framework\Exceptions\PageNotFoundException) {
+        http_response_code(404);
+    } else {
+        http_response_code(500);
+    }
+
     if ($show_errors === false) {
         require "views/500.php";
     } else {
